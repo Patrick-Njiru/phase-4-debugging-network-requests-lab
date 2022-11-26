@@ -63,11 +63,15 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
+    - I read the error that was appearing in the terminal of the running rails server when I tried to add a toy. It has a NameError that appeared in toy_controller.rb line 10. So I went to this file and found a typo, toy = Toys.create(toy_params) instead of toy = Toy.create(toy_params), so I fixed it.
 
 - Update the number of likes for a toy
 
   - How I debugged:
+    - When I clicked the update button, the page was displaying an error on the frontend, ToyCard.js, but I knew the problem was on the backend. So I navigated to the code editor and read the error from the rails server terminal. I found the error to be in the update method in the toys_controller. 
+    - At first I struggled to understand what the problem was since all the code was written well. I tried changing the params so that only `likes` param was being updated but to no avail. It was after a while that I decided to take a step back and look at the whole method that I realized someting was missing. The toy was being updated successfully but not being rendered at all. So I added the code to render it in json format in toys_controller.rb line 17 and fixed the bug.
 
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+    - On pressing the `Donate to GoodWill` button, the error that was appearing on the rails server terminal indicated that there was no `route` matching `DELETE` for any of the toys. So I navigated to the routes.rb file and found that the route for the destroy method had not been added. So I added it and fixed the bug.
